@@ -1,0 +1,638 @@
+<!doctype html>
+<html lang="en">
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<meta name="description" content="Sachin: C++, Unreal Engine and game developer. Real-scale solar system simulation, automotive exploded views, custom engines and a playable HTML5 game.">
+<meta property="og:title" content="Sachin's Portfolio">
+<meta property="og:description" content="C++, Unreal Engine 5, real-time 3D and game development.">
+<meta property="og:image" content="img/card_astroverse.jpg">
+<link rel="icon" href="game/art/app_icon_512.png">
+<style>html,body{margin:0}img{max-width:100%}[hidden]{display:none!important}</style>
+<title>Sachin's Portfolio</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400;500&family=IBM+Plex+Sans:wght@400;500;600&family=Saira+Condensed:wght@500;600;700&display=swap">
+<style>
+  :root {
+    color-scheme: dark;
+    --ink: #0a0f1c;
+    --panel: #111931;
+    --panel-2: #0e1528;
+    --line: #22304f;
+    --paper: #e8ecf5;
+    --muted: #93a0bd;
+    --sun: #ffb048;
+    --blue: #6ebeff;
+    --green: #78e6aa;
+    --display: "Saira Condensed", "Bahnschrift", "Arial Narrow", sans-serif;
+    --body: "IBM Plex Sans", "Segoe UI", system-ui, sans-serif;
+    --mono: "IBM Plex Mono", Consolas, "Courier New", monospace;
+    --max: 1180px;
+  }
+  * { box-sizing: border-box; }
+  body {
+    background: var(--ink);
+    color: var(--paper);
+    font: 16px/1.6 var(--body);
+    padding-inline: 20px;
+  }
+  a { color: inherit; }
+  :focus-visible { outline: 2px solid var(--sun); outline-offset: 3px; border-radius: 4px; }
+  .wrap { max-width: var(--max); margin-inline: auto; }
+  h1, h2, h3 { font-family: var(--display); font-weight: 600; line-height: 1.02; text-wrap: balance; margin: 0; letter-spacing: 0.005em; }
+  p { margin: 0; }
+  .eyebrow { font: 500 13px/1.2 var(--mono); letter-spacing: 0.14em; text-transform: uppercase; color: var(--sun); }
+  .mono { font-family: var(--mono); font-variant-numeric: tabular-nums; }
+
+  /* nav */
+  nav.top {
+    position: sticky; top: env(safe-area-inset-top, 0px); z-index: 5;
+    margin-inline: -20px; padding: 14px 20px;
+    background: color-mix(in srgb, var(--ink) 86%, transparent);
+    backdrop-filter: blur(10px);
+    border-bottom: 1px solid var(--line);
+  }
+  nav.top .wrap { display: flex; align-items: center; gap: 24px; flex-wrap: wrap; }
+  nav.top .brand { font: 700 22px/1 var(--display); letter-spacing: 0.04em; text-decoration: none; margin-right: auto; }
+  nav.top .brand span { color: var(--sun); }
+  nav.top a.link { text-decoration: none; color: var(--muted); font-size: 14px; }
+  nav.top a.link:hover { color: var(--paper); }
+  .btn {
+    display: inline-flex; align-items: center; gap: 8px;
+    padding: 10px 18px; border-radius: 999px; font-weight: 600; font-size: 14px;
+    text-decoration: none; border: 1px solid var(--sun); color: var(--ink); background: var(--sun);
+  }
+  .btn.ghost { background: transparent; color: var(--paper); border-color: var(--line); }
+  .btn:hover { filter: brightness(1.08); }
+
+  /* hero */
+  header.hero { padding-block: 56px 40px; display: grid; gap: 36px; grid-template-columns: 1fr; }
+  .hero-top { display: grid; gap: 28px; grid-template-columns: 1.25fr 1fr; align-items: end; }
+  .hero h1 { font-size: clamp(46px, 7.4vw, 96px); font-weight: 700; text-transform: uppercase; }
+  .hero h1 em { font-style: normal; color: var(--sun); }
+  .hero .lede { color: #c9d1e3; font-size: 18px; max-width: 46ch; }
+  .hero .cta { display: flex; gap: 12px; flex-wrap: wrap; margin-top: 22px; }
+  .reel { position: relative; border-radius: 14px; overflow: hidden; border: 1px solid var(--line); background: #000; aspect-ratio: 16 / 9; max-width: 100%; }
+  .reel video { width: 100%; height: 100%; display: block; object-fit: cover; }
+  .reel .tag { position: absolute; left: 14px; top: 12px; font: 500 12px var(--mono); letter-spacing: 0.1em; padding: 5px 10px; border-radius: 6px; background: rgba(10,15,28,.72); color: var(--sun); }
+
+  /* numbers strip */
+  .strip { display: grid; grid-template-columns: repeat(4, 1fr); border: 1px solid var(--line); border-radius: 12px; overflow: hidden; }
+  .strip div { padding: 18px 20px; border-right: 1px solid var(--line); background: var(--panel-2); }
+  .strip div:last-child { border-right: 0; }
+  .strip b { display: block; font: 600 30px/1.1 var(--display); color: var(--paper); }
+  .strip span { color: var(--muted); font-size: 13.5px; }
+
+  section { padding-block: 64px; border-top: 1px solid var(--line); }
+  .sec-head { display: flex; justify-content: space-between; align-items: end; gap: 24px; flex-wrap: wrap; margin-bottom: 30px; }
+  .sec-head h2 { font-size: clamp(34px, 4.6vw, 54px); }
+  .sec-head p { color: var(--muted); max-width: 52ch; }
+
+  /* flagship */
+  .case { display: grid; grid-template-columns: 1.35fr 1fr; gap: 36px; align-items: start; }
+  .case .copy { display: grid; gap: 18px; }
+  .case .copy p { color: #c9d1e3; }
+  .facts { list-style: none; padding: 0; margin: 0; display: grid; gap: 0; border-top: 1px solid var(--line); }
+  .facts li { display: grid; grid-template-columns: 130px 1fr; gap: 14px; padding: 11px 0; border-bottom: 1px solid var(--line); font-size: 14.5px; }
+  .facts li b { font: 500 13px/1.5 var(--mono); color: var(--sun); letter-spacing: 0.02em; }
+  .chips { display: flex; flex-wrap: wrap; gap: 8px; }
+  .chip { font: 500 12.5px/1 var(--mono); padding: 7px 11px; border-radius: 999px; border: 1px solid var(--line); color: #c9d1e3; background: var(--panel-2); }
+  .videos { display: grid; gap: 14px; }
+  .vcard { border: 1px solid var(--line); border-radius: 12px; overflow: hidden; background: var(--panel); }
+  .vcard video { width: 100%; display: block; aspect-ratio: 16/9; background: #000; }
+  .vcard .cap { padding: 10px 14px; display: flex; justify-content: space-between; gap: 12px; font-size: 14px; }
+  .vcard .cap span { color: var(--muted); font-family: var(--mono); font-size: 12.5px; }
+
+  .gallery { margin-top: 30px; display: grid; grid-template-columns: repeat(4, 1fr); gap: 10px; }
+  .gallery button { all: unset; cursor: zoom-in; position: relative; border-radius: 10px; overflow: hidden; border: 1px solid var(--line); aspect-ratio: 16/9; background: #000; }
+  .gallery button:focus-visible { outline: 2px solid var(--sun); outline-offset: 2px; }
+  .gallery img { width: 100%; height: 100%; object-fit: cover; display: block; transition: transform .5s ease; }
+  .gallery button:hover img { transform: scale(1.05); }
+  .gallery .wide { grid-column: span 2; grid-row: span 2; }
+  .gallery figcaption { position: absolute; left: 0; right: 0; bottom: 0; padding: 18px 10px 7px; font-size: 12.5px; background: linear-gradient(transparent, rgba(5,8,16,.85)); }
+
+  /* exploded view */
+  .xv { display: grid; grid-template-columns: 1fr 300px; border: 1px solid var(--line); border-radius: 14px; overflow: hidden; background: var(--panel-2); }
+  .xv-stage { position: relative; aspect-ratio: 16 / 10; max-width: 100%; background: #0c1222; touch-action: none; }
+  .xv-loading { position: absolute; inset: 0; display: grid; place-content: center; color: var(--muted); font-size: 14px; }
+  .xv-side { border-left: 1px solid var(--line); padding: 18px; display: grid; gap: 16px; align-content: start; }
+  .xv-controls { display: grid; gap: 10px; }
+  .xv-controls .btn { justify-content: center; }
+  .xv-label { display: flex; justify-content: space-between; font-size: 13px; color: var(--muted); }
+  #xv-slider { width: 100%; accent-color: var(--sun); }
+  .xv-info { display: grid; gap: 4px; padding: 12px 14px; border-radius: 10px; background: var(--panel); border: 1px solid var(--line); min-height: 86px; }
+  .xv-info b { font-family: var(--display); font-size: 22px; font-weight: 600; }
+  .xv-info span { color: #c9d1e3; font-size: 13.5px; }
+  .xv-list { list-style: none; margin: 0; padding: 0; display: grid; gap: 2px; max-height: 300px; overflow: auto; }
+  .xv-list button { all: unset; box-sizing: border-box; width: 100%; cursor: pointer; padding: 6px 10px; border-radius: 6px; font-size: 13.5px; color: #c9d1e3; display: flex; justify-content: space-between; }
+  .xv-list button:hover, .xv-list button[aria-pressed="true"] { background: var(--panel); color: var(--paper); }
+  .xv-list button[aria-pressed="true"]::after { content: "●"; color: var(--sun); font-size: 10px; }
+  .xv-list button:focus-visible { outline: 2px solid var(--sun); }
+  @media (max-width: 900px) { .xv { grid-template-columns: 1fr; } .xv-side { border-left: 0; border-top: 1px solid var(--line); } .xv-list { max-height: none; grid-template-columns: 1fr 1fr; } }
+
+  /* game */
+  .play { position: relative; aspect-ratio: 16 / 9; max-width: 100%; border-radius: 14px; overflow: hidden; border: 1px solid var(--line); background: #1a1a18; touch-action: none; user-select: none; -webkit-user-select: none; }
+  .play canvas { width: 100%; height: 100%; display: block; }
+  .play-overlay { position: absolute; inset: 0; display: grid; place-content: center; justify-items: center; gap: 16px; background: rgba(0,0,0,.35); text-align: center; padding: 16px; }
+  .hl-title { font: 500 clamp(28px, 6vw, 64px)/1 Georgia, "Times New Roman", serif; letter-spacing: 0.22em; color: #ecebe4; text-indent: 0.22em; }
+  .hl-hint { color: #d9d9d2; font-size: 13px; max-width: 40ch; }
+  .touch { position: absolute; inset: auto 0 0 0; display: flex; gap: 10px; padding: 12px; pointer-events: none; }
+  .touch button { pointer-events: auto; width: 64px; height: 64px; border-radius: 50%; border: 1px solid rgba(255,255,255,.35); background: rgba(0,0,0,.35); color: #ecebe4; font: 600 18px var(--body); touch-action: none; }
+  .touch .jump { margin-left: auto; width: 84px; height: 84px; font-size: 14px; letter-spacing: .08em; border-color: rgba(255,176,72,.7); }
+  .touch button.on { background: rgba(255,176,72,.35); }
+  .gallery-3 { grid-template-columns: repeat(3, 1fr); }
+
+  /* engines */
+  .engines { display: grid; grid-template-columns: 1fr 1fr; gap: 22px; }
+  .engine { border: 1px solid var(--line); border-radius: 14px; overflow: hidden; background: var(--panel); display: grid; grid-template-rows: auto 1fr; }
+  .engine img { width: 100%; display: block; aspect-ratio: 16/9; object-fit: cover; object-position: top; border-bottom: 1px solid var(--line); }
+  .engine .body { padding: 22px 24px 26px; display: grid; gap: 14px; align-content: start; }
+  .engine h3 { font-size: 36px; }
+  .engine .eyebrow { color: var(--acc); }
+  .engine p { color: #c9d1e3; font-size: 15px; }
+  .engine ul { margin: 0; padding-left: 18px; color: #c9d1e3; font-size: 14.5px; display: grid; gap: 6px; }
+  .engine ul li::marker { color: var(--acc); }
+  .engine .more { font-size: 13.5px; color: var(--muted); }
+  .engine .more a { color: var(--acc); }
+
+  /* stack */
+  .stack { display: grid; grid-template-columns: repeat(4, 1fr); gap: 0; border: 1px solid var(--line); border-radius: 12px; overflow: hidden; }
+  .stack div { padding: 20px 22px; background: var(--panel-2); border-right: 1px solid var(--line); }
+  .stack div:last-child { border-right: 0; }
+  .stack h3 { font-size: 22px; margin-bottom: 10px; color: var(--sun); }
+  .stack p { color: #c9d1e3; font-size: 14.5px; }
+
+  /* services / process */
+  .services { display: grid; grid-template-columns: repeat(4, 1fr); gap: 22px; }
+  .services article { display: grid; gap: 8px; align-content: start; }
+  .services h3 { font-size: 26px; }
+  .services p { color: #c9d1e3; font-size: 15px; }
+  .process { margin-top: 36px; display: grid; grid-template-columns: repeat(4, 1fr); gap: 0; counter-reset: step; }
+  .process li { list-style: none; padding: 16px 18px 16px 0; border-top: 2px solid var(--line); display: grid; gap: 4px; }
+  .process li::before { counter-increment: step; content: "0" counter(step); font: 500 12px var(--mono); color: var(--sun); }
+  .process b { font-weight: 600; }
+  .process span { color: var(--muted); font-size: 14px; }
+  .process { padding: 0; }
+
+  /* contact */
+  .contact { display: grid; grid-template-columns: 1.2fr 1fr; gap: 36px; align-items: center; }
+  .contact h2 { font-size: clamp(38px, 5.4vw, 66px); text-transform: uppercase; }
+  .contact h2 em { font-style: normal; color: var(--sun); }
+  .contact .links { display: grid; gap: 10px; }
+  .contact .links a { display: flex; justify-content: space-between; align-items: center; padding: 16px 18px; border: 1px solid var(--line); border-radius: 10px; text-decoration: none; background: var(--panel); }
+  .contact .links a:hover { border-color: var(--sun); }
+  .contact .links a span { color: var(--muted); font: 13px var(--mono); }
+  footer { padding-block: 26px 40px; color: var(--muted); font-size: 12.5px; border-top: 1px solid var(--line); }
+
+  /* lightbox */
+  dialog { border: 0; padding: 0; background: transparent; max-width: min(1400px, 94vw); }
+  dialog::backdrop { background: rgba(3,5,10,.9); }
+  dialog img { width: 100%; border-radius: 10px; display: block; }
+  dialog p { color: var(--paper); margin-top: 10px; font-size: 14px; }
+  dialog button { position: absolute; right: 8px; top: 8px; background: rgba(10,15,28,.8); color: var(--paper); border: 1px solid var(--line); border-radius: 999px; padding: 6px 12px; cursor: pointer; font: inherit; font-size: 13px; }
+
+  @media (max-width: 900px) {
+    .hero-top, .case, .engines, .contact { grid-template-columns: 1fr; }
+    .strip, .stack { grid-template-columns: 1fr 1fr; }
+    .strip div:nth-child(2), .stack div:nth-child(2) { border-right: 0; }
+    .strip div:nth-child(-n+2), .stack div:nth-child(-n+2) { border-bottom: 1px solid var(--line); }
+    .gallery { grid-template-columns: repeat(2, 1fr); }
+    .services, .process { grid-template-columns: 1fr 1fr; }
+  }
+  @media (max-width: 520px) {
+    nav.top a.link { display: none; }
+    .services, .process { grid-template-columns: 1fr; }
+    .facts li { grid-template-columns: 1fr; gap: 2px; }
+    .gallery .wide { grid-column: span 2; grid-row: span 1; }
+  }
+  @media (prefers-reduced-motion: reduce) {
+    .gallery img { transition: none; }
+  }
+</style>
+
+<nav class="top" aria-label="Main">
+  <div class="wrap">
+    <a class="brand" href="#top">SACHIN<span>.</span></a>
+    <a class="link" href="#astroverse">AstroVerse</a>
+    <a class="link" href="#automotive">Automotive</a>
+    <a class="link" href="#games">Games</a>
+    <a class="link" href="#engines">Engines</a>
+    <a class="link" href="#services">Services</a>
+    <a class="btn" href="#contact">Hire me</a>
+  </div>
+</nav>
+
+<main class="wrap" id="top">
+  <header class="hero">
+    <div class="hero-top">
+      <div>
+        <p class="eyebrow">C++ &middot; Unreal Engine 5 &middot; Game development &middot; VR</p>
+        <h1 style="margin-top:14px">I build <em>simulations</em> that are physically right</h1>
+      </div>
+      <div>
+        <p class="lede">C++ developer building real-time 3D software: a real-scale solar system in Unreal Engine, a structural analysis editor, and a game engine written from scratch. I care about the maths being correct and the frame rate staying steady.</p>
+        <div class="cta">
+          <a class="btn" href="#contact">Start a project</a>
+          <a class="btn ghost" href="#astroverse">See the work</a>
+        </div>
+      </div>
+    </div>
+
+    <div class="reel">
+      <video src="video/showreel.mp4" poster="img/poster_showreel.jpg" autoplay muted loop playsinline preload="metadata" aria-label="Showreel: AstroVerse, ArchEngine and RiftCore"></video>
+      <span class="tag">SHOWREEL</span>
+    </div>
+
+    <div class="strip">
+      <div><b class="mono">0.05&deg;</b><span>worst sun-position error against NOAA's solar-position algorithm</span></div>
+      <div><b class="mono">33,000</b><span>asteroids and Kuiper belt objects on real Kepler orbits</span></div>
+      <div><b class="mono">90 Hz</b><span>VR frame budget, galaxy view cut from 194 ms to 20 ms</span></div>
+      <div><b class="mono">8 DLLs</b><span>hot-loaded plugins in ArchEngine's modular core</span></div>
+    </div>
+  </header>
+
+  <section id="astroverse" aria-labelledby="av-h">
+    <div class="sec-head">
+      <div>
+        <p class="eyebrow">Flagship project &middot; Unreal Engine 5 &middot; C++</p>
+        <h2 id="av-h" style="margin-top:10px">AstroVerse</h2>
+      </div>
+      <p>A solar system simulator at true physical scale. You can fly to any planet, land and walk on it, launch a real rocket from a real pad, and watch the Sun cross the sky over your own city.</p>
+    </div>
+
+    <div class="case">
+      <div class="videos">
+        <div class="vcard">
+          <video src="video/astroverse_flyby.mp4" poster="img/poster_flyby.jpg" controls muted playsinline preload="none"></video>
+          <div class="cap"><b>Flyby: Earth, Moon, Mars, Jupiter</b></div>
+        </div>
+        <div class="vcard">
+          <video src="video/astroverse_launch.mp4" poster="img/poster_launch.jpg" controls muted playsinline preload="none"></video>
+          <div class="cap"><b>Mission mode: SLS and Gaganyaan launches</b></div>
+        </div>
+      </div>
+
+      <div class="copy">
+        <p>Casual space apps squash distances to make everything fit on screen. AstroVerse keeps size and distance on one scale, so the Sun really does look tiny from Neptune. Making that work takes engineering in every layer.</p>
+        <ul class="facts">
+          <li><b>Physics</b><span>Full N-body gravity, double precision, symplectic leapfrog integrator so orbits don't drift at high time-warp</span></li>
+          <li><b>Scale</b><span>Floating origin and scaled-space rendering, with a separate galaxy domain and a smooth hand-off between them</span></li>
+          <li><b>Real data</b><span>NASA LRO, MGS MOLA and NOAA ETOPO elevation; JPL Horizons orbits; IAU rotation models</span></li>
+          <li><b>Rendering</b><span>Custom HLSL for atmospheres, rings and the solar corona; exposure metered from the real sunlight</span></li>
+          <li><b>Missions</b><span>Data-driven launch vehicles, gravity-turn ascent, staging, hand-flown docking with a ring ship</span></li>
+          <li><b>Performance</b><span>Separate desktop, VR and mobile budgets; profiled per render pass with <span class="mono">profilegpu</span></span></li>
+          <li><b>Architecture</b><span>10 C++ modules in four strict layers, with automated tests run headless</span></li>
+        </ul>
+        <div class="chips">
+          <span class="chip">Unreal Engine 5</span><span class="chip">C++</span><span class="chip">HLSL</span><span class="chip">OpenXR</span><span class="chip">Python tooling</span><span class="chip">Blender</span><span class="chip">Cesium</span>
+        </div>
+      </div>
+    </div>
+
+    <div class="gallery" id="gallery">
+      <button class="wide" data-cap="Earth at true scale, with atmospheric scattering and live sun direction"><img src="img/av_earth.jpg" alt="Earth rendered in AstroVerse" loading="lazy"><figcaption>Earth</figcaption></button>
+      <button data-cap="SLS Block 1 lifting off from Launch Complex 39B"><img src="img/av_launch_sls_climb.jpg" alt="SLS rocket lifting off" loading="lazy"><figcaption>SLS liftoff</figcaption></button>
+      <button data-cap="The Moon, with LRO LOLA elevation data"><img src="img/av_moon.jpg" alt="The Moon" loading="lazy"><figcaption>The Moon</figcaption></button>
+      <button data-cap="Mars, with MGS MOLA elevation data"><img src="img/av_mars.jpg" alt="Mars" loading="lazy"><figcaption>Mars</figcaption></button>
+      <button data-cap="Jupiter's cloud tops, reachable in free flight"><img src="img/av_jupiter.jpg" alt="Jupiter cloud tops" loading="lazy"><figcaption>Jupiter</figcaption></button>
+      <button data-cap="HLVM3 / Gaganyaan climbing to a 200 km orbit"><img src="img/av_launch_hlvm3_orbit.jpg" alt="HLVM3 rocket over Earth" loading="lazy"><figcaption>Gaganyaan ascent</figcaption></button>
+      <button data-cap="Booster separation during SLS ascent"><img src="img/av_launch_sls_staging.jpg" alt="SLS booster separation" loading="lazy"><figcaption>Staging</figcaption></button>
+      <button data-cap="Sun paths over New Delhi for today, 21 June, 21 December and the equinox, with sunrise, noon and sunset"><img src="img/av_sunpaths.jpg" alt="Sun paths over New Delhi" loading="lazy"><figcaption>Sun paths, New Delhi</figcaption></button>
+      <button data-cap="India from low orbit, using NOAA ETOPO elevation"><img src="img/av_earth_india.jpg" alt="India seen from orbit" loading="lazy"><figcaption>Low orbit</figcaption></button>
+      <button class="wide" data-cap="Launch vehicles assembled from published dimensions and NASA 3D Resources, through a Blender pipeline"><img src="img/av_vehicles.jpg" alt="Four launch vehicles side by side" loading="lazy"><figcaption>Vehicle pipeline</figcaption></button>
+      <button data-cap="Moon surface close-up"><img src="img/av_moon_surface.jpg" alt="Moon surface close-up" loading="lazy"><figcaption>Lunar surface</figcaption></button>
+      <button data-cap="Orbit lines drawn live from the simulation"><img src="img/av_orbits.jpg" alt="Orbit lines" loading="lazy"><figcaption>Live orbits</figcaption></button>
+    </div>
+  </section>
+
+  <section id="engines" aria-labelledby="eng-h">
+    <div class="sec-head">
+      <div>
+        <p class="eyebrow">Engine &amp; tools work &middot; C++ &middot; OpenGL 4.6</p>
+        <h2 id="eng-h" style="margin-top:10px">Engines built from the ground up</h2>
+      </div>
+      <p>Most of the work in these two projects is architecture, not visuals: plugin systems, memory, threading and tooling that other developers can build on.</p>
+    </div>
+
+    <div class="engines">
+      <article class="engine" style="--acc: var(--blue)">
+        <img src="img/card_archengine.jpg" alt="ArchEngine architecture overview" loading="lazy">
+        <div class="body">
+          <p class="eyebrow">Structural analysis &middot; 3D editor</p>
+          <h3>ArchEngine</h3>
+          <p>A desktop editor for designing buildings and checking them with finite element analysis. I rebuilt it from a Qt/QML front end to a lighter ImGui editor on a four-layer plugin core, without touching the existing solver DLLs.</p>
+          <ul>
+            <li>FEM solver with stress heat-map view and safety factors</li>
+            <li>8 hot-loaded plugin DLLs with API version checks</li>
+            <li>Scripting layer with 25+ APIs, used live in a REPL or headless in CI</li>
+            <li>Export to DXF, SVG, PDF and IFC (BIM)</li>
+            <li><span class="mono">Result&lt;T&gt;</span> error handling, type-safe handles, per-frame linear allocator</li>
+          </ul>
+          <p class="more"><a href="img/arch_editor.jpg" target="_blank" rel="noopener">View the editor screenshot</a></p>
+        </div>
+      </article>
+
+      <article class="engine" style="--acc: var(--green)">
+        <img src="img/card_riftcore.jpg" alt="RiftCore architecture overview" loading="lazy">
+        <div class="body">
+          <p class="eyebrow">Game engine &middot; built from scratch</p>
+          <h3>RiftCore</h3>
+          <p>A modular C++ game engine where every system is its own DLL, loaded at runtime with no hard dependencies between modules. It is the foundation the ArchEngine redesign was based on.</p>
+          <ul>
+            <li>Entity-component system with component pools</li>
+            <li>Job system: thread pool with 19 workers and ParallelFor</li>
+            <li>OpenGL 4.6 renderer: Blinn-Phong lighting, OBJ/MTL loading, textures</li>
+            <li>Editor with selection, transform gizmos and live stats</li>
+            <li>CMake presets, stable 60 fps on a Quadro M4000</li>
+          </ul>
+          <p class="more"><a href="img/rift_editor.jpg" target="_blank" rel="noopener">View the editor screenshot</a></p>
+        </div>
+      </article>
+    </div>
+  </section>
+
+  <section id="automotive" aria-labelledby="auto-h">
+    <div class="sec-head">
+      <div>
+        <p class="eyebrow">Client work &middot; Automotive &middot; real-time 3D</p>
+        <h2 id="auto-h" style="margin-top:10px">Exploded view</h2>
+      </div>
+      <p>For an automotive company I implemented an exploded-view feature: users pull an engine apart, see how the parts fit together, and pick any part to inspect it. The client's models are confidential, so this is my own recreation of the feature on a generic four-cylinder engine. Try it below.</p>
+    </div>
+
+    <div class="xv">
+      <div class="xv-stage" id="xv-stage">
+        <p class="xv-loading" id="xv-loading">Loading 3D view&hellip;</p>
+      </div>
+      <aside class="xv-side">
+        <div class="xv-controls">
+          <button type="button" class="btn" id="xv-toggle">Explode</button>
+          <label for="xv-slider" class="xv-label">Separation <span class="mono" id="xv-val">0%</span></label>
+          <input type="range" id="xv-slider" min="0" max="100" value="0">
+        </div>
+        <div class="xv-info" id="xv-info" aria-live="polite">
+          <b id="xv-name">Pick a part</b>
+          <span id="xv-desc">Click a part in the view or in the list. Drag to orbit, scroll to zoom.</span>
+        </div>
+        <ul class="xv-list" id="xv-list"></ul>
+      </aside>
+    </div>
+
+    <div class="case" style="margin-top:28px">
+      <div class="videos">
+        <div class="vcard">
+          <video src="video/explode_view.mp4" poster="img/explode_assembled.jpg" controls muted playsinline preload="none"></video>
+          <div class="cap"><b>Explode, inspect, reassemble</b><span>8 s</span></div>
+        </div>
+      </div>
+      <div class="copy">
+        <ul class="facts">
+          <li><b>Sequencing</b><span>Parts leave in a staged order so nothing passes through anything else: coils, valve cover, camshafts and head come off before the pistons can rise out, and the oil pan drops before the crankshaft</span></li>
+          <li><b>Direction</b><span>Each part moves along its own assembly axis, with a fixed reference part the rest explode away from</span></li>
+          <li><b>Scrubbing</b><span>One slider drives the whole sequence, so users can stop at any stage or play it as an animation</span></li>
+          <li><b>Inspection</b><span>Hover and click picking with highlight, part name and details; orbit and zoom around the assembly</span></li>
+        </ul>
+        <div class="chips">
+          <span class="chip">3D interaction</span><span class="chip">Animation sequencing</span><span class="chip">Ray picking</span><span class="chip">PBR materials</span>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section id="games" aria-labelledby="game-h">
+    <div class="sec-head">
+      <div>
+        <p class="eyebrow">Game development &middot; HTML5 &middot; mobile</p>
+        <h2 id="game-h" style="margin-top:10px">Hollowlight</h2>
+      </div>
+      <p>An atmospheric puzzle-platformer about a child carrying the last light through a drowned forest. I wrote the engine, physics, art and touch controls myself. It runs in any phone or desktop browser, and you can play it below.</p>
+    </div>
+
+    <div class="play" id="play">
+      <canvas id="hl-canvas" aria-label="Hollowlight game"></canvas>
+      <div class="play-overlay" id="hl-start">
+        <p class="hl-title">HOLLOWLIGHT</p>
+        <button type="button" class="btn" id="hl-go">Play</button>
+        <p class="hl-hint">Arrows or A / D to move &middot; Space to jump &middot; on-screen buttons on phones</p>
+      </div>
+      <div class="play-overlay" id="hl-win" hidden>
+        <p class="hl-title">The light is home</p>
+        <button type="button" class="btn" id="hl-again">Play again</button>
+      </div>
+      <div class="touch" id="hl-touch" hidden>
+        <button type="button" data-k="left" aria-label="Move left">&#9664;</button>
+        <button type="button" data-k="right" aria-label="Move right">&#9654;</button>
+        <button type="button" data-k="jump" class="jump" aria-label="Jump">JUMP</button>
+      </div>
+    </div>
+
+    <div class="case" style="margin-top:28px">
+      <div class="videos">
+        <div class="vcard">
+          <video src="video/hollowlight_trailer.mp4" poster="game/art/feature_graphic_1024x500.png" controls muted playsinline preload="none"></video>
+          <div class="cap"><b>Trailer, captured from the game</b><span>10 s</span></div>
+        </div>
+      </div>
+      <div class="copy">
+        <ul class="facts">
+          <li><b>Engine</b><span>Custom 2D engine in JavaScript: fixed-step physics, swept collisions, pushable crates, pendulum and trap hazards</span></li>
+          <li><b>Art</b><span>All procedural: parallax forest in four depth layers, fog, rain, film grain and a flickering lantern that lights the scene</span></li>
+          <li><b>Mobile</b><span>Touch controls, any screen ratio, runs smoothly on phone browsers</span></li>
+          <li><b>Tooling</b><span>The same game code renders the trailer and store art offline in Node, frame by frame</span></li>
+        </ul>
+        <div class="chips">
+          <span class="chip">Game design</span><span class="chip">JavaScript</span><span class="chip">Canvas 2D</span><span class="chip">Touch input</span><span class="chip">Node.js tooling</span>
+        </div>
+      </div>
+    </div>
+
+    <div class="gallery gallery-3">
+      <button data-cap="Leaping a pit with the lantern"><img src="game/art/screen_pit.jpg" alt="Hollowlight: jumping a pit" loading="lazy"><figcaption>The first pit</figcaption></button>
+      <button data-cap="Pushing a crate to climb a ledge"><img src="game/art/screen_crate.jpg" alt="Hollowlight: pushing a crate" loading="lazy"><figcaption>Crate puzzle</figcaption></button>
+      <button data-cap="Timing a run under the swinging log"><img src="game/art/screen_log.jpg" alt="Hollowlight: swinging log" loading="lazy"><figcaption>Swinging log</figcaption></button>
+      <button data-cap="Reaching the lamp post at the end of the level"><img src="game/art/screen_light.jpg" alt="Hollowlight: the lamp post" loading="lazy"><figcaption>The lamp post</figcaption></button>
+      <button data-cap="Google Play feature graphic, 1024 x 500"><img src="game/art/feature_graphic_1024x500.png" alt="Hollowlight feature graphic" loading="lazy"><figcaption>Store feature graphic</figcaption></button>
+      <button data-cap="App icon, 512 x 512"><img src="game/art/app_icon_512.png" alt="Hollowlight app icon" loading="lazy" style="object-fit:contain;background:#111"><figcaption>App icon</figcaption></button>
+    </div>
+  </section>
+
+  <section aria-labelledby="stack-h">
+    <div class="sec-head">
+      <h2 id="stack-h">Tools I use</h2>
+    </div>
+    <div class="stack">
+      <div><h3>Languages</h3><p>C++17/20, HLSL, GLSL, Python, JavaScript</p></div>
+      <div><h3>Engines</h3><p>Unreal Engine 5, custom C++ and JavaScript engines, ImGui, Qt/QML</p></div>
+      <div><h3>Graphics</h3><p>OpenGL 4.6, Lumen and Nanite budgets, custom shaders, GPU profiling</p></div>
+      <div><h3>Simulation</h3><p>N-body and orbital mechanics, FEM, numerical integrators, geodesy</p></div>
+    </div>
+  </section>
+
+  <section id="services" aria-labelledby="svc-h">
+    <div class="sec-head">
+      <div>
+        <p class="eyebrow">What I can do for you</p>
+        <h2 id="svc-h" style="margin-top:10px">Services</h2>
+      </div>
+    </div>
+    <div class="services">
+      <article>
+        <h3>Unreal Engine development</h3>
+        <p>C++ gameplay and systems, custom shaders, simulation and visualisation apps, VR set-up and performance passes.</p>
+      </article>
+      <article>
+        <h3>Simulation &amp; 3D visualisation</h3>
+        <p>Physics and engineering simulations, exploded views and product viewers, architecture walkthroughs, scientific and training tools.</p>
+      </article>
+      <article>
+        <h3>Game development</h3>
+        <p>2D and 3D games for mobile, web and PC: gameplay, physics, level mechanics, touch controls, trailers and store assets.</p>
+      </article>
+      <article>
+        <h3>Game development</h3>
+        <p>2D and 3D games for mobile, web and PC: gameplay, physics, level mechanics, touch controls, trailers and store assets.</p>
+      </article>
+      <article>
+        <h3>C++ engine &amp; tools work</h3>
+        <p>Plugin architectures, editors, OpenGL rendering, multithreading, and fixing crashes or performance problems in existing C++ code.</p>
+      </article>
+    </div>
+    <ol class="process">
+      <li><b>Short call</b><span>Understand the goal and the constraints</span></li>
+      <li><b>Written plan</b><span>Scope, milestones and a fixed quote</span></li>
+      <li><b>Weekly builds</b><span>A working build and a short video each week</span></li>
+      <li><b>Handover</b><span>Clean code, docs and a walkthrough</span></li>
+    </ol>
+  </section>
+
+  <section id="contact" aria-labelledby="ct-h">
+    <div class="contact">
+      <div>
+        <p class="eyebrow">Available for contract work</p>
+        <h2 id="ct-h" style="margin-top:12px">Have a simulation <em>to build?</em></h2>
+        <p style="color:#c9d1e3;margin-top:14px;max-width:46ch">Send me a short description of the project. I'll reply with questions and a rough plan.</p>
+      </div>
+      <div class="links">
+        <a href="https://www.upwork.com/" target="_blank" rel="noopener">Hire me on Upwork <span>upwork.com &rarr;</span></a>
+        <a href="https://www.linkedin.com/" target="_blank" rel="noopener">Connect on LinkedIn <span>linkedin.com &rarr;</span></a>
+        <a href="https://github.com/" target="_blank" rel="noopener">Code on GitHub <span>github.com &rarr;</span></a>
+      </div>
+    </div>
+  </section>
+</main>
+
+<footer class="wrap">
+  Planet textures in AstroVerse by Solar System Scope (solarsystemscope.com), CC BY 4.0. Vehicle models built from NASA 3D Resources.
+</footer>
+
+<dialog id="lightbox" aria-label="Image viewer">
+  <button type="button" id="lb-close">Close</button>
+  <img id="lb-img" alt="">
+  <p id="lb-cap"></p>
+</dialog>
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/three@0.128.0/examples/js/controls/OrbitControls.js"></script>
+<script src="demo/explode.js"></script>
+<script>
+  (function () {
+    const stage = document.getElementById('xv-stage');
+    if (!window.THREE || !window.ExplodeDemo) { document.getElementById('xv-loading').textContent = 'The 3D view could not load. The video below shows it in action.'; return; }
+    const slider = document.getElementById('xv-slider'), val = document.getElementById('xv-val'), toggle = document.getElementById('xv-toggle');
+    const nameEl = document.getElementById('xv-name'), descEl = document.getElementById('xv-desc'), list = document.getElementById('xv-list');
+    let demo;
+    try {
+      const r = stage.getBoundingClientRect();
+      demo = ExplodeDemo.mount(stage, {
+        width: r.width, height: r.height,
+        onAmount: a => { slider.value = Math.round(a * 100); val.textContent = Math.round(a * 100) + '%'; toggle.textContent = a > 0.5 ? 'Reassemble' : 'Explode'; },
+        onSelect: (i, p) => {
+          nameEl.textContent = p ? p.name : 'Pick a part';
+          descEl.textContent = p ? p.desc : 'Click a part in the view or in the list. Drag to orbit, scroll to zoom.';
+          list.querySelectorAll('button').forEach((b, k) => b.setAttribute('aria-pressed', k === i ? 'true' : 'false'));
+        }
+      });
+    } catch (e) { document.getElementById('xv-loading').textContent = 'This device could not start WebGL. The video below shows the feature.'; return; }
+    document.getElementById('xv-loading').remove();
+    demo.parts.forEach((p, i) => {
+      const li = document.createElement('li'), b = document.createElement('button');
+      b.type = 'button'; b.textContent = p.name; b.setAttribute('aria-pressed', 'false');
+      b.addEventListener('click', () => demo.select(i));
+      li.appendChild(b); list.appendChild(li);
+    });
+    toggle.addEventListener('click', () => { demo.start(); demo.setGoal(demo.getAmount() > 0.5 ? 0 : 1); });
+    stage.addEventListener('pointerdown', () => demo.start());
+    slider.addEventListener('input', () => { demo.start(); demo.setAmount(slider.value / 100); val.textContent = slider.value + '%'; toggle.textContent = slider.value > 50 ? 'Reassemble' : 'Explode'; });
+    new ResizeObserver(() => { const r = stage.getBoundingClientRect(); if (r.width > 0) demo.resize(r.width, r.height); }).observe(stage);
+    try {
+      new IntersectionObserver(e => { e[0].isIntersecting ? demo.start() : demo.stop(); }).observe(stage);
+    } catch (e) { demo.start(); }
+  })();
+</script>
+<script src="game/hollowlight.js"></script>
+<script>
+  (function () {
+    const box = document.getElementById('play'), cv = document.getElementById('hl-canvas'), ctx = cv.getContext('2d');
+    const start = document.getElementById('hl-start'), win = document.getElementById('hl-win'), touch = document.getElementById('hl-touch');
+    if (!window.Hollowlight) return;
+    const game = Hollowlight.createGame({ seed: 7, makeCanvas: (w, h) => Object.assign(document.createElement('canvas'), { width: w, height: h }) });
+    const keys = { left: false, right: false, jump: false };
+    let playing = false, visible = true, last = 0;
+
+    function size() {
+      const r = box.getBoundingClientRect(), d = Math.min(2, window.devicePixelRatio || 1);
+      cv.width = Math.max(320, Math.round(r.width * d)); cv.height = Math.max(180, Math.round(r.height * d));
+    }
+    size(); addEventListener('resize', size);
+    try { new IntersectionObserver(e => { visible = e[0].isIntersecting; }).observe(box); } catch (e) {}
+
+    function frame(ts) {
+      const dt = Math.min(0.05, (ts - (last || ts)) / 1000); last = ts;
+      if (visible) {
+        game.step(dt, playing ? keys : game.autopilot());
+        game.draw(ctx, cv.width, cv.height, { dt });
+        if (game.state.won && game.state.wonT > (playing ? 2.5 : 3.5)) {
+          if (playing) { win.hidden = false; playing = false; touch.hidden = true; }
+          else game.reset();
+        }
+      }
+      requestAnimationFrame(frame);
+    }
+    requestAnimationFrame(frame);
+
+    function begin() {
+      game.reset(); playing = true; start.hidden = true; win.hidden = true;
+      keys.left = keys.right = keys.jump = false;
+      if (matchMedia('(pointer: coarse)').matches || 'ontouchstart' in window) touch.hidden = false;
+      box.focus?.();
+    }
+    document.getElementById('hl-go').addEventListener('click', begin);
+    document.getElementById('hl-again').addEventListener('click', begin);
+
+    const map = { ArrowLeft: 'left', KeyA: 'left', ArrowRight: 'right', KeyD: 'right', Space: 'jump', ArrowUp: 'jump', KeyW: 'jump' };
+    addEventListener('keydown', e => { if (!playing || !map[e.code]) return; keys[map[e.code]] = true; e.preventDefault(); });
+    addEventListener('keyup', e => { if (map[e.code]) keys[map[e.code]] = false; });
+    touch.querySelectorAll('button').forEach(b => {
+      const k = b.dataset.k;
+      const on = e => { e.preventDefault(); keys[k] = true; b.classList.add('on'); try { b.setPointerCapture(e.pointerId); } catch (x) {} };
+      const off = () => { keys[k] = false; b.classList.remove('on'); };
+      b.addEventListener('pointerdown', on); b.addEventListener('pointerup', off); b.addEventListener('pointercancel', off); b.addEventListener('lostpointercapture', off);
+    });
+  })();
+
+  const dlg = document.getElementById('lightbox');
+  const img = document.getElementById('lb-img');
+  const cap = document.getElementById('lb-cap');
+  document.querySelectorAll('.gallery button').forEach(b => {
+    b.addEventListener('click', () => {
+      const i = b.querySelector('img');
+      img.src = i.src; img.alt = i.alt; cap.textContent = b.dataset.cap || '';
+      dlg.showModal();
+    });
+  });
+  document.getElementById('lb-close').addEventListener('click', () => dlg.close());
+  dlg.addEventListener('click', e => { if (e.target === dlg) dlg.close(); });
+  if (matchMedia('(prefers-reduced-motion: reduce)').matches) {
+    const v = document.querySelector('.reel video'); v.removeAttribute('autoplay'); v.pause(); v.controls = true;
+  }
+</script>

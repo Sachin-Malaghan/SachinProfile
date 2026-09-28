@@ -1,0 +1,33 @@
+<!doctype html>
+<meta charset="utf-8">
+<title>Explode capture</title>
+<style>body{margin:0;background:#000} #v{width:1280px;height:720px}</style>
+<div id="v"></div>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js"></script>
+<script src="../portfolio/demo/explode.js"></script>
+<script>
+  const demo = ExplodeDemo.mount(document.getElementById('v'), { width: 1280, height: 720, capture: true });
+  const post = (name, i, blob) => fetch(`/frame/${name}/${i}`, { method: 'POST', body: blob });
+  const snap = () => new Promise(r => demo.renderer.domElement.toBlob(r, 'image/jpeg', 0.92));
+
+  // 8 s at 30 fps: hold, explode, hold with a highlighted part, reassemble; camera orbits throughout
+  window.captureVideo = async function () {
+    const N = 240, sm = t => t * t * (3 - 2 * t);
+    for (let i = 0; i < N; i++) {
+      const t = i / 30;
+      let a = 0;
+      if (t < 0.8) a = 0; else if (t < 3.6) a = (t - 0.8) / 2.8; else if (t < 6.4) a = 1; else a = 1 - sm(Math.min(1, (t - 6.4) / 1.5));
+      demo.setAmount(a < 1 && t >= 0.8 && t < 3.6 ? a : a);
+      demo.select(t > 4.2 && t < 6.2 ? 9 : -1);
+      demo.orbit(0.9 - t * 0.075, 4.0, 1.35 + Math.sin(t * 0.4) * 0.1);
+      demo.render();
+      await post('explode', i, await snap());
+    }
+    return 'ok';
+  };
+  window.captureStill = async function (name, amount, angle, dist, height, sel) {
+    demo.setAmount(amount); demo.select(sel ?? -1); demo.orbit(angle, dist, height); demo.render();
+    await post(name, 0, await snap());
+    return 'ok';
+  };
+</script>
