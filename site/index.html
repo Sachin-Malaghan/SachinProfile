@@ -2,11 +2,11 @@
 <html lang="en">
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
-<meta name="description" content="Sachin: C++, Unreal Engine and game developer. Real-scale solar system simulation, automotive exploded views, custom engines and a playable HTML5 game.">
+<meta name="description" content="Sachin: C++ and Unreal Engine developer. Three mobile games, a real-scale solar system simulator, automotive exploded views and an AI-run game studio.">
 <meta property="og:title" content="Sachin's Portfolio">
-<meta property="og:description" content="C++, Unreal Engine 5, real-time 3D and game development.">
-<meta property="og:image" content="img/card_astroverse.jpg">
-<link rel="icon" href="game/art/app_icon_512.png">
+<meta property="og:description" content="C++, Unreal Engine 5, mobile games and real-time 3D.">
+<meta property="og:image" content="img/card_emberhome.jpg">
+<link rel="icon" href="img/eh_icon.png">
 <style>html,body{margin:0}img{max-width:100%}[hidden]{display:none!important}</style>
 <title>Sachin's Portfolio</title>
 <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -142,6 +142,22 @@
   .touch button.on { background: rgba(255,176,72,.35); }
   .gallery-3 { grid-template-columns: repeat(3, 1fr); }
 
+  /* game case studies */
+  .game { padding-top: 34px; margin-top: 34px; border-top: 1px solid var(--line); display: grid; gap: 22px; }
+  .sec-head + .game { border-top: 0; padding-top: 0; margin-top: 0; }
+  .game-head { display: flex; align-items: center; gap: 16px; flex-wrap: wrap; }
+  .game-icon { width: 64px; height: 64px; border-radius: 14px; border: 1px solid var(--line); object-fit: cover; }
+  .game-title { font-size: clamp(30px, 4vw, 44px); letter-spacing: 0.04em; }
+  .game-title.serif { font-family: Georgia, "Times New Roman", serif; font-weight: 400; letter-spacing: 0.16em; }
+  .game-tag { color: #c9d1e3; max-width: 56ch; margin-top: 4px; }
+  .status { margin-left: auto; font: 500 12.5px/1 var(--mono); padding: 8px 12px; border-radius: 999px; border: 1px solid var(--green); color: var(--green); white-space: nowrap; }
+  .status.dev { border-color: var(--sun); color: var(--sun); }
+  .gallery-4 { margin-top: 0; grid-template-columns: repeat(4, 1fr); }
+  .proto { border: 1px solid var(--line); border-radius: 12px; padding: 14px 16px; background: var(--panel-2); }
+  .proto summary { cursor: pointer; font-weight: 600; }
+  .proto p { color: var(--muted); font-size: 14px; margin: 10px 0 14px; max-width: 70ch; }
+  .facts li b { color: var(--fact, var(--sun)); }
+
   /* engines */
   .engines { display: grid; grid-template-columns: 1fr 1fr; gap: 22px; }
   .engine { border: 1px solid var(--line); border-radius: 14px; overflow: hidden; background: var(--panel); display: grid; grid-template-rows: auto 1fr; }
@@ -163,7 +179,7 @@
   .stack p { color: #c9d1e3; font-size: 14.5px; }
 
   /* services / process */
-  .services { display: grid; grid-template-columns: repeat(4, 1fr); gap: 22px; }
+  .services { display: grid; grid-template-columns: repeat(5, 1fr); gap: 20px; }
   .services article { display: grid; gap: 8px; align-content: start; }
   .services h3 { font-size: 26px; }
   .services p { color: #c9d1e3; font-size: 15px; }
@@ -196,7 +212,8 @@
     .strip, .stack { grid-template-columns: 1fr 1fr; }
     .strip div:nth-child(2), .stack div:nth-child(2) { border-right: 0; }
     .strip div:nth-child(-n+2), .stack div:nth-child(-n+2) { border-bottom: 1px solid var(--line); }
-    .gallery { grid-template-columns: repeat(2, 1fr); }
+    .gallery, .gallery-4 { grid-template-columns: repeat(2, 1fr); }
+    .status { margin-left: 0; }
     .services, .process { grid-template-columns: 1fr 1fr; }
   }
   @media (max-width: 520px) {
@@ -216,6 +233,7 @@
     <a class="link" href="#astroverse">AstroVerse</a>
     <a class="link" href="#automotive">Automotive</a>
     <a class="link" href="#games">Games</a>
+    <a class="link" href="#ai">AI</a>
     <a class="link" href="#engines">Engines</a>
     <a class="link" href="#services">Services</a>
     <a class="btn" href="#contact">Hire me</a>
@@ -226,11 +244,11 @@
   <header class="hero">
     <div class="hero-top">
       <div>
-        <p class="eyebrow">C++ &middot; Unreal Engine 5 &middot; Game development &middot; VR</p>
-        <h1 style="margin-top:14px">I build <em>simulations</em> that are physically right</h1>
+        <p class="eyebrow">C++ &middot; Unreal Engine 5 &middot; Mobile games &middot; Simulation</p>
+        <h1 style="margin-top:14px">I build <em>games and simulations</em> that are right under the hood</h1>
       </div>
       <div>
-        <p class="lede">C++ developer building real-time 3D software: a real-scale solar system in Unreal Engine, a structural analysis editor, and a game engine written from scratch. I care about the maths being correct and the frame rate staying steady.</p>
+        <p class="lede">C++ and Unreal Engine developer. I have built three mobile games, a real-scale solar system simulator, an exploded-view feature for an automotive company, and an AI-run game studio. I care about the maths being correct and the frame rate staying steady.</p>
         <div class="cta">
           <a class="btn" href="#contact">Start a project</a>
           <a class="btn ghost" href="#astroverse">See the work</a>
@@ -244,10 +262,10 @@
     </div>
 
     <div class="strip">
-      <div><b class="mono">0.05&deg;</b><span>worst sun-position error against NOAA's solar-position algorithm</span></div>
-      <div><b class="mono">33,000</b><span>asteroids and Kuiper belt objects on real Kepler orbits</span></div>
-      <div><b class="mono">90 Hz</b><span>VR frame budget, galaxy view cut from 194 ms to 20 ms</span></div>
-      <div><b class="mono">8 DLLs</b><span>hot-loaded plugins in ArchEngine's modular core</span></div>
+      <div><b class="mono">3 games</b><span>built in Unreal Engine 5 and C++ for Android, iOS and Windows</span></div>
+      <div><b class="mono">31 levels</b><span>across EMBERHOME and ECHOES, every one proven finishable by an autopilot</span></div>
+      <div><b class="mono">0.05&deg;</b><span>worst sun-position error in AstroVerse against NOAA's algorithm</span></div>
+      <div><b class="mono">0 assets</b><span>in the games: all art and all sound are generated in code</span></div>
     </div>
   </header>
 
@@ -279,7 +297,7 @@
           <li><b>Scale</b><span>Floating origin and scaled-space rendering, with a separate galaxy domain and a smooth hand-off between them</span></li>
           <li><b>Real data</b><span>NASA LRO, MGS MOLA and NOAA ETOPO elevation; JPL Horizons orbits; IAU rotation models</span></li>
           <li><b>Rendering</b><span>Custom HLSL for atmospheres, rings and the solar corona; exposure metered from the real sunlight</span></li>
-          <li><b>Missions</b><span>Data-driven launch vehicles, gravity-turn ascent, staging, hand-flown docking with a ring ship</span></li>
+          <li><b>Missions</b><span>Data-driven launch vehicles, gravity-turn ascent, staging, then hand-flown docking with Odyssey, a 340 m spinning ring station-ship modelled in Blender</span></li>
           <li><b>Performance</b><span>Separate desktop, VR and mobile budgets; profiled per render pass with <span class="mono">profilegpu</span></span></li>
           <li><b>Architecture</b><span>10 C++ modules in four strict layers, with automated tests run headless</span></li>
         </ul>
@@ -298,9 +316,9 @@
       <button data-cap="HLVM3 / Gaganyaan climbing to a 200 km orbit"><img src="img/av_launch_hlvm3_orbit.jpg" alt="HLVM3 rocket over Earth" loading="lazy"><figcaption>Gaganyaan ascent</figcaption></button>
       <button data-cap="Booster separation during SLS ascent"><img src="img/av_launch_sls_staging.jpg" alt="SLS booster separation" loading="lazy"><figcaption>Staging</figcaption></button>
       <button data-cap="Sun paths over New Delhi for today, 21 June, 21 December and the equinox, with sunrise, noon and sunset"><img src="img/av_sunpaths.jpg" alt="Sun paths over New Delhi" loading="lazy"><figcaption>Sun paths, New Delhi</figcaption></button>
-      <button data-cap="India from low orbit, using NOAA ETOPO elevation"><img src="img/av_earth_india.jpg" alt="India seen from orbit" loading="lazy"><figcaption>Low orbit</figcaption></button>
+      <button data-cap="Docked with Odyssey in low Earth orbit, choosing a destination"><img src="img/av_odyssey_docked.jpg" alt="Capsule docked with the Odyssey ring ship" loading="lazy"><figcaption>Docked with Odyssey</figcaption></button>
       <button class="wide" data-cap="Launch vehicles assembled from published dimensions and NASA 3D Resources, through a Blender pipeline"><img src="img/av_vehicles.jpg" alt="Four launch vehicles side by side" loading="lazy"><figcaption>Vehicle pipeline</figcaption></button>
-      <button data-cap="Moon surface close-up"><img src="img/av_moon_surface.jpg" alt="Moon surface close-up" loading="lazy"><figcaption>Lunar surface</figcaption></button>
+      <button data-cap="Approaching the Odyssey ring station-ship for docking"><img src="img/av_odyssey_approach.jpg" alt="Approaching the Odyssey ring ship" loading="lazy"><figcaption>Rendezvous</figcaption></button>
       <button data-cap="Orbit lines drawn live from the simulation"><img src="img/av_orbits.jpg" alt="Orbit lines" loading="lazy"><figcaption>Live orbits</figcaption></button>
     </div>
   </section>
@@ -402,57 +420,174 @@
   <section id="games" aria-labelledby="game-h">
     <div class="sec-head">
       <div>
-        <p class="eyebrow">Game development &middot; HTML5 &middot; mobile</p>
-        <h2 id="game-h" style="margin-top:10px">Hollowlight</h2>
+        <p class="eyebrow">Game development &middot; Unreal Engine 5 &middot; C++ &middot; Android and iOS</p>
+        <h2 id="game-h" style="margin-top:10px">Mobile games</h2>
       </div>
-      <p>An atmospheric puzzle-platformer about a child carrying the last light through a drowned forest. I wrote the engine, physics, art and touch controls myself. It runs in any phone or desktop browser, and you can play it below.</p>
+      <p>Three games built in Unreal Engine 5 and C++ for Brainrot Interactive Studios. They share one approach: the game logic is plain, deterministic C++ that is tested in seconds outside the engine, and everything on screen and every sound is generated in code, with no imported art.</p>
     </div>
 
-    <div class="play" id="play">
-      <canvas id="hl-canvas" aria-label="Hollowlight game"></canvas>
-      <div class="play-overlay" id="hl-start">
-        <p class="hl-title">HOLLOWLIGHT</p>
-        <button type="button" class="btn" id="hl-go">Play</button>
-        <p class="hl-hint">Arrows or A / D to move &middot; Space to jump &middot; on-screen buttons on phones</p>
-      </div>
-      <div class="play-overlay" id="hl-win" hidden>
-        <p class="hl-title">The light is home</p>
-        <button type="button" class="btn" id="hl-again">Play again</button>
-      </div>
-      <div class="touch" id="hl-touch" hidden>
-        <button type="button" data-k="left" aria-label="Move left">&#9664;</button>
-        <button type="button" data-k="right" aria-label="Move right">&#9654;</button>
-        <button type="button" data-k="jump" class="jump" aria-label="Jump">JUMP</button>
-      </div>
-    </div>
-
-    <div class="case" style="margin-top:28px">
-      <div class="videos">
-        <div class="vcard">
-          <video src="video/hollowlight_trailer.mp4" poster="game/art/feature_graphic_1024x500.png" controls muted playsinline preload="none"></video>
-          <div class="cap"><b>Trailer, captured from the game</b><span>10 s</span></div>
+    <!-- EMBERHOME -->
+    <article class="game" aria-labelledby="eh-h">
+      <header class="game-head">
+        <img src="img/eh_icon.png" alt="" class="game-icon" loading="lazy">
+        <div>
+          <h3 id="eh-h" class="game-title serif">EMBERHOME</h3>
+          <p class="game-tag">A child, a lantern, a stray dog and a grey, rainy world. Bring the light home.</p>
         </div>
+        <span class="status">v2.1 &middot; Play Store release build ready</span>
+      </header>
+      <div class="case">
+        <div class="videos">
+          <div class="vcard">
+            <video src="video/emberhome.mp4" poster="img/eh_feature.jpg" controls muted playsinline preload="none"></video>
+            <div class="cap"><b>EMBERHOME in 15 seconds</b><span>Android &middot; iOS &middot; Windows</span></div>
+          </div>
+        </div>
+        <div class="copy">
+          <ul class="facts">
+            <li><b>Game</b><span>Eleven handcrafted levels: forest, hills, a warehouse, a railway yard, a station and a mountain</span></li>
+            <li><b>Companion</b><span>A stray dog that follows you, barks at traps, holds pressure plates and fits through gaps you can't</span></li>
+            <li><b>Movement</b><span>Run, sprint, slide, vault, ledge grab and ladders, with levers, drawbridges, crates and tools to carry</span></li>
+            <li><b>Engine</b><span>Deterministic simulation core with no Unreal headers, compiled separately so levels are tested in seconds</span></li>
+            <li><b>Autopilot</b><span>An AI player must finish every level from every checkpoint before a build passes. It also plays the attract mode</span></li>
+            <li><b>No assets</b><span>All drawing is batched canvas triangles; all sound is synthesised live. Identical on every device</span></li>
+            <li><b>Release</b><span>Android App Bundle, target API 36, store listing, graphics and privacy page; iOS configured</span></li>
+          </ul>
+        </div>
+      </div>
+      <div class="gallery gallery-4">
+        <button data-cap="EMBERHOME: a stray dog decides to come too"><img src="img/eh_stray.jpg" alt="EMBERHOME: the child and the dog on a hill" loading="lazy"><figcaption>A Stray</figcaption></button>
+        <button data-cap="EMBERHOME: the warehouse, with a crowbar up on the racking"><img src="img/eh_warehouse.jpg" alt="EMBERHOME warehouse level" loading="lazy"><figcaption>The Warehouse</figcaption></button>
+        <button data-cap="EMBERHOME: sliding under a wagon in the railway yard"><img src="img/eh_sidings.jpg" alt="EMBERHOME railway level" loading="lazy"><figcaption>Sidings</figcaption></button>
+        <button data-cap="EMBERHOME: jumping the chasm on The Mountain"><img src="img/eh_mountain.jpg" alt="EMBERHOME mountain level" loading="lazy"><figcaption>The Mountain</figcaption></button>
+        <button data-cap="EMBERHOME: timing a run under a swinging log"><img src="img/eh_wood.jpg" alt="EMBERHOME first level" loading="lazy"><figcaption>The Edge of the Wood</figcaption></button>
+        <button data-cap="EMBERHOME: touch controls with JUMP, SLIDE and ACT"><img src="img/eh_touch.jpg" alt="EMBERHOME touch controls" loading="lazy"><figcaption>Touch controls</figcaption></button>
+        <button data-cap="EMBERHOME: title screen with the game playing itself behind"><img src="img/eh_title.jpg" alt="EMBERHOME title screen" loading="lazy"><figcaption>Title</figcaption></button>
+        <button data-cap="EMBERHOME: the ending"><img src="img/eh_home.jpg" alt="EMBERHOME ending" loading="lazy"><figcaption>Homecoming</figcaption></button>
+      </div>
+
+      <details class="proto">
+        <summary>Play the original browser prototype</summary>
+        <p>EMBERHOME started as this small HTML5 prototype, then called Hollowlight: one level, written in plain JavaScript. The Unreal game keeps its art direction, physics numbers and first level.</p>
+        <div class="play" id="play">
+          <canvas id="hl-canvas" aria-label="Hollowlight prototype"></canvas>
+          <div class="play-overlay" id="hl-start">
+            <p class="hl-title">HOLLOWLIGHT</p>
+            <button type="button" class="btn" id="hl-go">Play</button>
+            <p class="hl-hint">Arrows or A / D to move &middot; Space to jump &middot; on-screen buttons on phones</p>
+          </div>
+          <div class="play-overlay" id="hl-win" hidden>
+            <p class="hl-title">The light is home</p>
+            <button type="button" class="btn" id="hl-again">Play again</button>
+          </div>
+          <div class="touch" id="hl-touch" hidden>
+            <button type="button" data-k="left" aria-label="Move left">&#9664;</button>
+            <button type="button" data-k="right" aria-label="Move right">&#9654;</button>
+            <button type="button" data-k="jump" class="jump" aria-label="Jump">JUMP</button>
+          </div>
+        </div>
+      </details>
+    </article>
+
+    <!-- ECHOES -->
+    <article class="game" aria-labelledby="ec-h">
+      <header class="game-head">
+        <img src="img/ec_icon.png" alt="" class="game-icon" loading="lazy">
+        <div>
+          <h3 id="ec-h" class="game-title">ECHOES</h3>
+          <p class="game-tag">You have 10 seconds. Then time rewinds and your past self helps you.</p>
+        </div>
+        <span class="status">Play Store release kit ready</span>
+      </header>
+      <div class="case">
+        <div class="videos">
+          <div class="vcard">
+            <video src="video/echoes.mp4" poster="img/ec_feature.jpg" controls muted playsinline preload="none"></video>
+            <div class="cap"><b>ECHOES in 15 seconds</b><span>Android first</span></div>
+          </div>
+        </div>
+        <div class="copy">
+          <ul class="facts">
+            <li><b>Game</b><span>A time-loop puzzle platformer: 20 levels in two worlds, The Lab and The Factory</span></li>
+            <li><b>Echoes</b><span>Each 10-second run replays as a solid ghost that presses plates, holds doors, blocks lasers and can be stood on</span></li>
+            <li><b>Replay</b><span>Fixed 50 Hz tick with full state snapshots per tick, so up to six Echoes replay exactly, every time</span></li>
+            <li><b>Paradox</b><span>If an Echo can no longer repeat its past, the loop detects it and tells the player why</span></li>
+            <li><b>Music</b><span>Synthesised live and locked to the loop: every Echo you record adds an instrument</span></li>
+            <li><b>Proof</b><span>An autopilot solves every level in tests, and an audio test renders every sound to check it is audible and never clips</span></li>
+          </ul>
+        </div>
+      </div>
+      <div class="gallery gallery-4">
+        <button data-cap="ECHOES: three Echoes hold the lasers while you walk through"><img src="img/ec_assembly.jpg" alt="ECHOES assembly line level" loading="lazy"><figcaption>Assembly Line</figcaption></button>
+        <button data-cap="ECHOES: standing on your past self to reach the portal"><img src="img/ec_stone.jpg" alt="ECHOES stepping stone level" loading="lazy"><figcaption>Stepping Stone</figcaption></button>
+        <button data-cap="ECHOES: the loop rewinds and your run is recorded"><img src="img/ec_rewind.jpg" alt="ECHOES rewind effect" loading="lazy"><figcaption>Rewind</figcaption></button>
+        <button data-cap="ECHOES: a paradox, when an Echo could not repeat its past"><img src="img/ec_paradox.jpg" alt="ECHOES paradox screen" loading="lazy"><figcaption>Paradox</figcaption></button>
+        <button data-cap="ECHOES: four Echoes working one room"><img src="img/ec_clockwork.jpg" alt="ECHOES clockwork level" loading="lazy"><figcaption>Clockwork</figcaption></button>
+        <button data-cap="ECHOES: the Factory world"><img src="img/ec_hotwire.jpg" alt="ECHOES hot wire level" loading="lazy"><figcaption>Hot Wire</figcaption></button>
+        <button data-cap="ECHOES: the final level"><img src="img/ec_core.jpg" alt="ECHOES the core level" loading="lazy"><figcaption>The Core</figcaption></button>
+        <button data-cap="ECHOES: touch controls"><img src="img/ec_touch.jpg" alt="ECHOES touch controls" loading="lazy"><figcaption>Touch controls</figcaption></button>
+      </div>
+    </article>
+
+    <!-- CURIO ISLES -->
+    <article class="game" aria-labelledby="ci-h">
+      <header class="game-head">
+        <div>
+          <h3 id="ci-h" class="game-title">CURIO ISLES</h3>
+          <p class="game-tag">Break it. Fix it. Understand it. A science puzzle game where every level is a broken machine.</p>
+        </div>
+        <span class="status dev">In development &middot; core prototype</span>
+      </header>
+      <div class="case">
+        <div class="videos">
+          <div class="vcard">
+            <video src="video/curioisles.mp4" poster="img/ci_title.jpg" controls muted playsinline preload="none"></video>
+            <div class="cap"><b>CURIO ISLES prototype</b><span>Newton's Island: physics</span></div>
+          </div>
+        </div>
+        <div class="copy">
+          <ul class="facts">
+            <li><b>Loop</b><span>Build, play, learn: drop parts into a machine, set real quantities with sliders, press play and watch the chain reaction</span></li>
+            <li><b>Two modes</b><span>Fun Mode hides the numbers. Student Mode shows units, measurements, velocity arrows and the formula worked through with your values</span></li>
+            <li><b>Physics</b><span>Deterministic simulation that matches textbook results, so the same setup gives the same answer on every device</span></li>
+            <li><b>Solver</b><span>A solver proves each level is solvable within par, and that leaving the sliders untouched does not solve it</span></li>
+            <li><b>Content</b><span>Levels, parts, worlds and islands are JSON, so new science subjects ship as content packs</span></li>
+          </ul>
+        </div>
+      </div>
+      <div class="gallery gallery-4">
+        <button data-cap="CURIO ISLES: Student Mode shows the formula with your own numbers"><img src="img/ci_student.jpg" alt="CURIO ISLES student mode result" loading="lazy"><figcaption>Student Mode</figcaption></button>
+        <button data-cap="CURIO ISLES: setting the ramp height"><img src="img/ci_sliders.jpg" alt="CURIO ISLES ramp height slider" loading="lazy"><figcaption>Set the height</figcaption></button>
+        <button data-cap="CURIO ISLES: a failed attempt ends in the pond"><img src="img/ci_splash.jpg" alt="CURIO ISLES cart in the pond" loading="lazy"><figcaption>Splash</figcaption></button>
+        <button data-cap="CURIO ISLES: projectile motion across the canyon"><img src="img/ci_canyon.jpg" alt="CURIO ISLES canyon level" loading="lazy"><figcaption>Canyon Shot</figcaption></button>
+      </div>
+    </article>
+  </section>
+
+  <section id="ai" aria-labelledby="ai-h">
+    <div class="sec-head">
+      <div>
+        <p class="eyebrow" style="color:#b496ff">AI agents &middot; Python &middot; Unreal Engine</p>
+        <h2 id="ai-h" style="margin-top:10px">Shunya Studio AI</h2>
+      </div>
+      <p>A virtual game studio. AI employees in design, engineering, art, audio, QA and DevOps develop a real Unreal Engine project, and a 2.5D office view shows what each one is actually doing.</p>
+    </div>
+    <div class="case">
+      <div class="videos">
+        <img src="img/card_shunya.jpg" alt="Shunya Studio AI pipeline: you, studio director, producer, author, lead review, build, QA, approval, merge" loading="lazy" style="border-radius:12px;border:1px solid var(--line);display:block;width:100%">
       </div>
       <div class="copy">
-        <ul class="facts">
-          <li><b>Engine</b><span>Custom 2D engine in JavaScript: fixed-step physics, swept collisions, pushable crates, pendulum and trap hazards</span></li>
-          <li><b>Art</b><span>All procedural: parallax forest in four depth layers, fog, rain, film grain and a flickering lantern that lights the scene</span></li>
-          <li><b>Mobile</b><span>Touch controls, any screen ratio, runs smoothly on phone browsers</span></li>
-          <li><b>Tooling</b><span>The same game code renders the trailer and store art offline in Node, frame by frame</span></li>
+        <ul class="facts" style="--fact:#b496ff">
+          <li><b>Pipeline</b><span>Request, plan, author, lead review, build, QA, human approval, merge. Nobody reviews, tests or merges their own work</span></li>
+          <li><b>Real output</b><span>Agents work in git worktrees, compile with UnrealBuildTool, run the Automation Framework and build assets in a headless editor</span></li>
+          <li><b>Safety</b><span>40 typed tools with permission checks and a workspace sandbox. No shell tool, no merge tool, and status changes are decided in code, not by prompts</span></li>
+          <li><b>Limits</b><span>Each agent loop is bounded by iterations, time, tokens, cost and tool calls, with repeated-error detection and escalation</span></li>
+          <li><b>Honest status</b><span>The pipeline is verified end to end with scripted agents against the real engine. The Claude agent provider is implemented and awaiting its first live run</span></li>
         </ul>
         <div class="chips">
-          <span class="chip">Game design</span><span class="chip">JavaScript</span><span class="chip">Canvas 2D</span><span class="chip">Touch input</span><span class="chip">Node.js tooling</span>
+          <span class="chip">Python</span><span class="chip">Agent orchestration</span><span class="chip">Claude API</span><span class="chip">REST + WebSocket</span><span class="chip">Unreal automation</span>
         </div>
       </div>
-    </div>
-
-    <div class="gallery gallery-3">
-      <button data-cap="Leaping a pit with the lantern"><img src="game/art/screen_pit.jpg" alt="Hollowlight: jumping a pit" loading="lazy"><figcaption>The first pit</figcaption></button>
-      <button data-cap="Pushing a crate to climb a ledge"><img src="game/art/screen_crate.jpg" alt="Hollowlight: pushing a crate" loading="lazy"><figcaption>Crate puzzle</figcaption></button>
-      <button data-cap="Timing a run under the swinging log"><img src="game/art/screen_log.jpg" alt="Hollowlight: swinging log" loading="lazy"><figcaption>Swinging log</figcaption></button>
-      <button data-cap="Reaching the lamp post at the end of the level"><img src="game/art/screen_light.jpg" alt="Hollowlight: the lamp post" loading="lazy"><figcaption>The lamp post</figcaption></button>
-      <button data-cap="Google Play feature graphic, 1024 x 500"><img src="game/art/feature_graphic_1024x500.png" alt="Hollowlight feature graphic" loading="lazy"><figcaption>Store feature graphic</figcaption></button>
-      <button data-cap="App icon, 512 x 512"><img src="game/art/app_icon_512.png" alt="Hollowlight app icon" loading="lazy" style="object-fit:contain;background:#111"><figcaption>App icon</figcaption></button>
     </div>
   </section>
 
@@ -461,8 +596,8 @@
       <h2 id="stack-h">Tools I use</h2>
     </div>
     <div class="stack">
-      <div><h3>Languages</h3><p>C++17/20, HLSL, GLSL, Python, JavaScript</p></div>
-      <div><h3>Engines</h3><p>Unreal Engine 5, custom C++ and JavaScript engines, ImGui, Qt/QML</p></div>
+      <div><h3>Languages</h3><p>C++17/20, Python, HLSL, GLSL, JavaScript</p></div>
+      <div><h3>Engines and platforms</h3><p>Unreal Engine 5, Android, iOS, Windows, custom C++ engines, ImGui</p></div>
       <div><h3>Graphics</h3><p>OpenGL 4.6, Lumen and Nanite budgets, custom shaders, GPU profiling</p></div>
       <div><h3>Simulation</h3><p>N-body and orbital mechanics, FEM, numerical integrators, geodesy</p></div>
     </div>
@@ -485,12 +620,12 @@
         <p>Physics and engineering simulations, exploded views and product viewers, architecture walkthroughs, scientific and training tools.</p>
       </article>
       <article>
-        <h3>Game development</h3>
-        <p>2D and 3D games for mobile, web and PC: gameplay, physics, level mechanics, touch controls, trailers and store assets.</p>
+        <h3>Mobile game development</h3>
+        <p>Complete games in Unreal Engine 5 and C++ for Android and iOS: gameplay, physics, level design, touch controls, audio, and Play Store release builds.</p>
       </article>
       <article>
-        <h3>Game development</h3>
-        <p>2D and 3D games for mobile, web and PC: gameplay, physics, level mechanics, touch controls, trailers and store assets.</p>
+        <h3>AI agents &amp; automation</h3>
+        <p>Agent pipelines with typed tools, permissions, budgets and human approval, including automated Unreal builds, tests and content.</p>
       </article>
       <article>
         <h3>C++ engine &amp; tools work</h3>
@@ -584,6 +719,7 @@
       cv.width = Math.max(320, Math.round(r.width * d)); cv.height = Math.max(180, Math.round(r.height * d));
     }
     size(); addEventListener('resize', size);
+    box.closest('details')?.addEventListener('toggle', size);
     try { new IntersectionObserver(e => { visible = e[0].isIntersecting; }).observe(box); } catch (e) {}
 
     function frame(ts) {
